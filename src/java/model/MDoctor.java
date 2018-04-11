@@ -256,6 +256,12 @@ public class MDoctor implements InDoctor{
                  data.add(this.getDoctorGender());
                  data.add(this.getDoctorDOB());
                  data.add(this.getDoctorPhone());
+                 /*data.add(rs.getString(1));
+                 data.add(rs.getString(2));
+                 data.add(rs.getString(3));
+                 data.add(rs.getString(4));
+                 data.add(rs.getString(5));
+                 data.add(rs.getString(6));*/
              }
         } catch (SQLException ex) {
             System.out.println("Error: " + ex);
