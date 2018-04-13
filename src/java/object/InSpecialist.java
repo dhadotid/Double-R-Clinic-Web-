@@ -23,4 +23,5 @@ public interface InSpecialist {
     public String[] FDSpc();
     public String autoid();
     public int specialistAvailable();
+    public ArrayList dropdownSpecialist();
 }

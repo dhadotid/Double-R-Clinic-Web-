@@ -166,6 +166,24 @@ public class MSpecialist implements InSpecialist{
         return data;
     }
     
+    public ArrayList dropdownSpecialist(){
+        ArrayList data = new ArrayList();
+        String sql = "select Id_Specialist, Specialist from Doctor.Specialist";
+        try {
+            Statement statement = obj_koneksi.con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+             while(rs.next())
+             {
+                 this.setSpcID(rs.getString(1));
+                 this.setSpcName(rs.getString(2));
+                 data.add(this.getSpcID() + " - " + this.getSpcName());
+             }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex);
+        }
+        return data;
+    }
+    
     public String[] FDSpc()
     {
         try 

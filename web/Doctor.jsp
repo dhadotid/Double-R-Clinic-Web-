@@ -77,6 +77,7 @@
                       try{
                         MDoctor md = new MDoctor();
                         ArrayList data = md.tableDoctor();
+                        out.println("Data L: " + data.size());
                         for(int i = 0;i < data.size()-1;i+=6)
                         {
                             String idDoctor = (String)data.get(i);
@@ -103,13 +104,13 @@
                         }
                     }
                     catch(Exception ex) {
-                        out.println("Data Gagal Ditampilkan" + ex.toString());
+                        out.println("Data Gagal Ditampilkan : " + ex);
                         
                     }
 
 
                       %>                      
-                                              
+                                             
                       </tbody>
                     </table>
                   </div>

@@ -4,6 +4,9 @@
     Author     : GR
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.MDoctor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,16 +31,23 @@
     <br>
     </head>
     <body>
-    <form name="ADform" method="post" action="cAdmin">
+    <form name="DoctorForm" method="post" action="Doctor">
         <div class="container form-horizontal">
             <div class="row">
                 <div class="col-md-7 col-md-offset-3">
                 <div class="custom">
+                    <%
+                        String idDoctor;
+                        MDoctor mDoc = new MDoctor();
+
+                        idDoctor = mDoc.autoid();
+                        
+                        %>
                     <fieldset disabled>
                         <div class="form-group">
                           <label class="col-md-3 control-label" for="txtIdDoctor">ID Doctor</label>
                           <div class="col-md-9">
-                              <input type="text" id="txtID" name="txtID" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="txtID" name="txtID" required="required" class="form-control col-md-7 col-xs-12" value="<%=idDoctor%>">
                           </div>
                         </div>
                     </fieldset>
@@ -46,8 +56,11 @@
                   <label class="col-md-3 control-label" for="DDIdSpecialist">ID Specialist</label>
                   <div class="col-md-9">
                      <select name="specialist">
-                        <option value="General">General</option>
-                        <option value="Hati">Hati</option>
+                         <c:forEach var="dropdownValue" items="${dropdownList}">
+                             <option value="${dropdownValue}">
+                                 ${dropdownValue}
+                             </option>
+                         </c:forEach>
                       </select> 
                   </div>
                 </div>

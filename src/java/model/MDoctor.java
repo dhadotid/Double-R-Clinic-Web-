@@ -237,6 +237,7 @@ public class MDoctor implements InDoctor{
     }
     
     public ArrayList tableDoctor(){
+        obj_koneksi.openConnection();
         ArrayList data = new ArrayList();
         String sql = "select * from Doctor.Doctor";
         try {
@@ -255,38 +256,14 @@ public class MDoctor implements InDoctor{
                  data.add(this.getDoctorName());
                  data.add(this.getDoctorGender());
                  data.add(this.getDoctorDOB());
-                 data.add(this.getDoctorPhone());
-                 /*data.add(rs.getString(1));
-                 data.add(rs.getString(2));
-                 data.add(rs.getString(3));
-                 data.add(rs.getString(4));
-                 data.add(rs.getString(5));
-                 data.add(rs.getString(6));*/
+                 data.add(this.getDoctorPhone());              
              }
         } catch (SQLException ex) {
             System.out.println("Error: " + ex);
         }
         return data;
     }
-    
-    public ArrayList tableSpecialist(){
-        ArrayList data = new ArrayList();
-        String sql = "select * from Doctor.Specialist";
-        try {
-            Statement statement = obj_koneksi.con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-             while(rs.next())
-             {
-                 data.add(rs.getString(1));
-                 data.add(rs.getString(2));
-                 data.add(rs.getDouble(3));
-             }
-        } catch (SQLException ex) {
-            System.out.println("Error: " + ex);
-        }
-        return data;
-    }
-    
+       
     public String autoid(){
         String idDoctor = "";
         try {

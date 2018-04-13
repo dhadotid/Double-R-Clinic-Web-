@@ -31,5 +31,4 @@ public interface InDoctor{
     public String[] FDDoctor();
     public String autoid();
     public ArrayList tableDoctor();
-    public ArrayList tableSpecialist();
 }
