@@ -31,7 +31,7 @@
     <br>
     </head>
     <body>
-    <form name="DoctorForm" method="post" action="Doctor">
+    <form name="DoctorForm" method="post" action="AddDoctor">
         <div class="container form-horizontal">
             <div class="row">
                 <div class="col-md-7 col-md-offset-3">
@@ -41,7 +41,6 @@
                         MDoctor mDoc = new MDoctor();
 
                         idDoctor = mDoc.autoid();
-                        
                         %>
                     <fieldset disabled>
                         <div class="form-group">
@@ -94,11 +93,26 @@
                   </div>
                 </div>
 
-                <div class="form-group">
+                              <%
+                              String status;
+                          status = request.getParameter("status");
+                          if(status != null){
+                            if(status.equals("Add") && status != null){%>
+                               <div class="form-group">
                   <div class="col-md-12 text-right">
-                      <input type="submit" value="Save">
+                      <input type="submit" value="Save" name="Btn">
                   </div>
-                </div>
+                </div><%
+                            }else if(status.equals("Update") && status != null){%>
+                               <div class="form-group">
+                                <div class="col-md-12 text-right">
+                                    <input type="submit" value="Update" name="Btn">
+                                </div>
+                              </div> 
+                            <%}
+                          }
+                      %>
+                
                 </div>
                 </div>
             </div>

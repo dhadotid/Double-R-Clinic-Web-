@@ -3,25 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.MDoctor;
-import model.MSpecialist;
 
 /**
  *
  * @author dhadotid
  */
-@WebServlet(name = "Doctor", urlPatterns = {"/Doctor"})
-public class Doctor extends HttpServlet {
+@WebServlet(name = "AddDoctor", urlPatterns = {"/AddDoctor"})
+public class AddDoctor extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,11 +35,32 @@ public class Doctor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            MSpecialist mSpc = new MSpecialist();
-            ArrayList data = mSpc.dropdownSpecialist();
-            
-            request.setAttribute("dropdownList", data);
-            request.getRequestDispatcher("AddDoctor.jsp").forward(request, response);
+            String status = request.getParameter("Btn");
+            String gender = request.getParameter("gender");
+            MDoctor md = new MDoctor();
+            if(status.equals("Update")){
+                md.setDoctorID(request.getParameter("txtID"));
+                //md.setDoctorSPC(request.getParameter("")); belum ada namanya
+                md.setDoctorName(request.getParameter("txtName"));
+                md.setDoctorGender(gender);
+                md.setDoctorDOB(request.getParameter("dob"));
+                md.setDoctorPhone(request.getParameter("txtPhone"));
+                int i = md.doUpdate();
+                if(i > 0){
+                    response.sendRedirect("Doctor.jsp");
+                }
+            }else if(status.equals("Save")){
+                md.setDoctorID(request.getParameter("txtID"));
+                //md.setDoctorSPC(request.getParameter("")); belum ada namanya
+                md.setDoctorName(request.getParameter("txtName"));
+                md.setDoctorGender(gender);
+                md.setDoctorDOB(request.getParameter("dob"));
+                md.setDoctorPhone(request.getParameter("txtPhone"));
+                int i = md.doInsert();
+                if(i > 0){
+                    response.sendRedirect("Doctor.jsp");
+                }
+            }
         }
     }
 
